@@ -4,18 +4,21 @@ import os
 
 def clean_timestamps(input_file, output_file):
     """
-    Reads an XML file, removes microseconds from timestamps, and writes to a new file.
-    Example: 2026-03-24T13:39:03.327914+0000 -> 2026-03-24T13:39:03+0000
+    Reads an XML file, removes microseconds and everything after '+' from timestamps,
+    and writes to a new file.
+    Example: 2026-03-24T13:39:03.327914+0000 -> 2026-03-24T13:39:03
     """
     print(f"Cleaning timestamps in '{input_file}' and saving to '{output_file}'...")
     try:
         with open(input_file, 'r', encoding='utf-8') as infile:
             content = infile.read()
 
-        # Regex to find ISO 8601 timestamps with fractional seconds and timezone offset
-        # It captures the date, time (up to seconds), and timezone offset.
-        # It then reconstructs the string without the fractional seconds.
-        cleaned_content = re.sub(r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})\.\d{6}([+-]\d{4})', r'\1\2', content)
+        # Regex to find ISO 8601 timestamps:
+        # 1. Captures the date and time up to seconds: (\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})
+        # 2. Optionally matches fractional seconds: (\.\d+)?
+        # 3. Optionally matches a '+' followed by anything (non-greedy): (\+.*?)?
+        # We replace it with just the first captured group (date and time up to seconds).
+        cleaned_content = re.sub(r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(\.\d+)?(\+.*?)?', r'\1', content)
 
         with open(output_file, 'w', encoding='utf-8') as outfile:
             outfile.write(cleaned_content)
