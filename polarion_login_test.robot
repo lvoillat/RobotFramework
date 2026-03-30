@@ -8,12 +8,17 @@ Library    OperatingSystem    # To interact with the operating system, e.g., for
 # Use variable files, environment variables, or secret management.
 ${POLARION_URL}             http://pl1chzrh0298nb/polarion/#/project/SiemensDemo/home # Direct URL to the project home
 ${USERNAME}                 lVoillat
-${PASSWORD}                 2
+${PASSWORD}                 1
 ${BROWSER}                  Chrome             # You can change this to Firefox, Edge, etc.
 ${DELAY}                    0.5s               # Small delay for general pauses (use sparingly)
 ${DASHBOARD_ELEMENT_ID}     DOM_13             # The ID for the dashboard content element you expect
 ${LOGIN_TIMEOUT}            15s                # Timeout for login-related waits
 ${DASHBOARD_LOAD_TIMEOUT}   30s                # Longer timeout for dashboard element presence
+
+ /**
+  @wi.implements SD-8652 Test User Login
+  */ 
+
 
 ***Test Cases***
 Successfully Log In to Polarion
