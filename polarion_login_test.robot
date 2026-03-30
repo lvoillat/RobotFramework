@@ -15,10 +15,7 @@ ${DASHBOARD_ELEMENT_ID}     DOM_13             # The ID for the dashboard conten
 ${LOGIN_TIMEOUT}            15s                # Timeout for login-related waits
 ${DASHBOARD_LOAD_TIMEOUT}   30s                # Longer timeout for dashboard element presence
 
- /**
-  @wi.implements SD-8652 Test User Login
-  */ 
-
+#  @wi.implements SD-8652 Test User Login
 
 ***Test Cases***
 Successfully Log In to Polarion
